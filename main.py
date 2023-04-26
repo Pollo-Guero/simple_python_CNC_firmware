@@ -24,7 +24,7 @@ class dibujar:
         self.Z=10
         self.Za=self.Z
         self.decimalx,self.decimaly=0,0
-        self.tools=[0,0,0]# valores de pwm que acomodan la herramienta
+        self.tools=[0,0,0]
         self.ppmmy=ppmmy
         self.ppmmx=ppmmx
         print("los ppmm estan definidas",self.ppmmx,self.ppmmy)
@@ -32,12 +32,12 @@ class dibujar:
         self.home()        
         self.decimal_acumuladoX,self.decimal_acumuladoY=0,0
         
-    def __init__(self,ppmmx, ppmmy):#ppmm se usara para calcular la cantidad de pasos que deve de dar por medida
+    def __init__(self,ppmmx, ppmmy):
        self.init(ppmmx,ppmmy)
        
     def home(self):
         # puedes poner un una funcion para los limites de carrera aqui
-        self.x,self.y,self.z=0,0,0#aqui se define la posicion inicial de la herramienta
+        self.x,self.y,self.z=0,0,0
         self.xa,self.ya,self.za=self.x,self.y,self.z
         self.puntoX,self.puntoXa,self.puntoY,self.puntoYa=0,0,0,0
         print("coordenadas iniciales definidas")
@@ -60,7 +60,8 @@ class dibujar:
             Direccion=1
         GPIO.output(10,Direccion)
         GPIO.output(13,Direccion)
-     #
+     
+    
         for i in range(abs(pasos)):
             #print("X")        
             time.sleep(0.003)
@@ -199,5 +200,5 @@ class dibujar:
         GPIO.output(15,1)
             
 print("start")
-nuevo=dibujar(4,-4.7)#35 de diametro, #0.054006
-nuevo.leerGcode("/home/pi/Desktop/code/python/myPloter/cubo.ngc")
+dibujo=dibujar(4,-4.7)# pasos por milimetro para X y para Y
+dibujo.leerGcode("LaRuta/De/TuArchivo.extencion")
